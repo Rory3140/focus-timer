@@ -1,4 +1,6 @@
-export const Colors = {
+export const colors = {
     offWhite: "#f0f0f0",
-    forestGreen: "#002D0B",
+    sienaGreen: "#1b4932",
+    sienaGreenLight: "#006B54",
+    sienaGold: "#FCC917",
 }

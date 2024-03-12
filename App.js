@@ -1,3 +1,5 @@
+import React, { useState } from "react";
+
 import {
   SafeAreaView,
   StyleSheet,
@@ -5,14 +7,27 @@ import {
   Platform,
   StatusBar,
 } from "react-native";
+
 import { Focus } from "./src/features/Focus";
-import { Colors } from "./src/utils/Colors";
+import { Timer } from "./src/features/Timer";
+import { colors } from "./src/utils/colors";
+import { fontSizes, spacing } from "./src/utils/sizes";
 
 export default function App() {
+  StatusBar.setBarStyle("light-content", true);
+  const [currentSubject, setCurrentSubject] = useState(null);
+
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.text}>Hello World!</Text>
-      <Focus />
+      {!currentSubject ? (
+        <Focus addSubject={setCurrentSubject} />
+      ) : (
+        <Timer
+          focusSubject={currentSubject}
+          onTimerEnd={() => {}}
+          clearSubject={() => setCurrentSubject(null)}
+        />
+      )}
     </SafeAreaView>
   );
 }
@@ -20,12 +35,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.forestGreen,
+    backgroundColor: colors.sienaGreen,
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
     alignItems: "center",
-  },
-  text: {
-    color: Colors.offWhite,
-    fontSize: 30,
   },
 });
