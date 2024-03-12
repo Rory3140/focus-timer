@@ -70,10 +70,7 @@ export const Timer = ({ focusSubject, onTimerEnd, clearSubject }) => {
         <RoundedButton
           title="X"
           size={50}
-          onPress={() => {
-            Vibration.vibrate(1);
-            clearSubject();
-          }}
+          onPress={() => clearSubject()}
         />
       </View>
     </View>
