@@ -9,7 +9,7 @@ export const FocusHistory = ({ history }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Things we focused on:</Text>
+      <Text style={styles.title}>Focus History:</Text>
       <FlatList data={history} renderItem={renderItem} />
     </View>
   );
