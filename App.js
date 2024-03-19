@@ -4,6 +4,8 @@ import {
   SafeAreaView,
   StyleSheet,
   Text,
+  View,
+  Button,
   Platform,
   StatusBar,
 } from "react-native";
@@ -18,19 +20,24 @@ import { fontSizes, spacing } from "./src/utils/sizes";
 export default function App() {
   StatusBar.setBarStyle("light-content", true);
   const [currentSubject, setCurrentSubject] = useState(null);
-  const [history, setHistory] = useState(["stuff", "more stuff"]);
+  const [history, setHistory] = useState([]);
 
   return (
     <SafeAreaView style={styles.container}>
       {!currentSubject ? (
         <>
           <Focus addSubject={setCurrentSubject} />
-          <FocusHistory history={history} />
+          {history.length > 0 && (
+            <>
+              <FocusHistory history={history} />
+              <Button title="Clear History" onPress={() => setHistory([])} />
+            </>
+          )}
         </>
       ) : (
         <Timer
           focusSubject={currentSubject}
-          onTimerEnd={() => {}}
+          onTimerEnd={(focusSubject) => setHistory([...history, focusSubject])}
           clearSubject={() => setCurrentSubject(null)}
         />
       )}
